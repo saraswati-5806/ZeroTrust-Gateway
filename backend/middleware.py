@@ -1,30 +1,63 @@
-from functools import wraps
-from flask import request, jsonify, g
-import jwt
-from auth import decode_and_validate_token
+import requests
+from datetime import datetime, timezone
+from flask import request, g, current_app
+from backend.models import error_response
+from backend.database.db import decode_and_validate_token, get_micro_app_by_id, log_access_event
 
-EXEMPT_ROUTES = {"/api/auth/login", "/health"}
+PUBLIC_ENDPOINTS = ["/auth/login", "/auth/refresh", "/health"]
 
-def zero_trust_interceptor():
-    """Global before_request handler enforcing token authentication on non-exempt routes."""
-    if request.path in EXEMPT_ROUTES or request.method == "OPTIONS":
-        return None
 
-    auth_header = request.headers.get("Authorization")
-    if not auth_header or not auth_header.startswith("Bearer "):
-        return jsonify({"error": "Unauthorized", "message": "Missing or malformed Authorization header."}), 401
-
-    token = auth_header.split(" ")[1]
-
+def fetch_geo_country(ip_address: str) -> str:
+    """Queries ip-api.com to resolve geo country from IP address."""
+    if ip_address in ["127.0.0.1", "localhost", "::1"] or ip_address.startswith("192.168."):
+        return "LOCAL"
     try:
-        payload = decode_and_validate_token(token)
-        # Store context in Flask's global state object for route handlers
-        g.user_id = payload.get("sub")
-        g.user_role = payload.get("role")
-        g.token = token
-    except jwt.ExpiredSignatureError:
-        return jsonify({"error": "Unauthorized", "message": "Token has expired."}), 401
-    except jwt.InvalidTokenError as e:
-        return jsonify({"error": "Unauthorized", "message": str(e)}), 401
+        response = requests.get(f"http://ip-api.com/json/{ip_address}?fields=countryCode", timeout=2.0)
+        if response.status_code == 200:
+            return response.json().get("countryCode", "UNKNOWN")
     except Exception:
-        return jsonify({"error": "Internal Server Error", "message": "Authentication check failed."}), 500
+        pass
+    return "UNKNOWN"
+
+
+def setup_middleware(app):
+    """Registers the before_request interceptor with the Flask application."""
+    
+    @app.before_request
+    def interceptor():
+        # Skip authentication for public endpoints
+        if request.path in PUBLIC_ENDPOINTS or request.method == "OPTIONS":
+            return None
+
+        # 1. Extract Token from Authorization header or httpOnly cookie
+        auth_header = request.headers.get("Authorization")
+        token = None
+
+        if auth_header and auth_header.startswith("Bearer "):
+            token = auth_header.split(" ")[1]
+        elif request.cookies.get("access_token"):
+            token = request.cookies.get("access_token")
+
+        if not token:
+            return error_response("Missing authentication token", error_code="UNAUTHORIZED", status_code=401)
+
+        # 2. Decode and Validate JWT Claims & Blocklist
+        try:
+            payload = decode_and_validate_token(token)
+        except Exception as e:
+            return error_response(f"Invalid or expired token: {str(e)}", error_code="UNAUTHORIZED", status_code=401)
+
+        # 3. Extract Request Context & Perform Geo Lookup
+        client_ip = request.headers.get("X-Forwarded-For", request.remote_addr)
+        geo_country = fetch_geo_country(client_ip)
+        current_hour = datetime.now(timezone.utc).hour
+
+        # 4. Attach Context to Flask 'g' Object
+        g.user_id = payload.get("sub")
+        g.role = payload.get("role")
+        g.device_id = request.headers.get("X-Device-ID", "unknown-device")
+        g.login_hour = current_hour
+        g.geo_country = geo_country
+        g.token = token
+
+        return None

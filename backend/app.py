@@ -1,54 +1,100 @@
 import os
-from flask import Flask, request, jsonify, g
-from auth import generate_token, revoke_token
-from middleware import zero_trust_interceptor
+from flask import Flask
+from flask_cors import CORS
+from dotenv import load_dotenv
+
+from backend.models import error_response
+from backend.auth import auth_bp
+from backend.middleware import setup_middleware
+from backend.database.db import get_micro_app_by_id, get_access_logs, log_access_event, get_micro_apps
+
+load_dotenv()
 
 app = Flask(__name__)
+CORS(app, supports_credentials=True)
 
-# Register global Zero-Trust middleware
-app.before_request(zero_trust_interceptor)
+# Register Middleware Interceptor
+setup_middleware(app)
 
-# Mock user database for demonstration
-MOCK_USERS = {
-    "admin": {"password": "adminpassword123", "role": "admin"},
-    "operator": {"password": "operatorpassword123", "role": "operator"}
-}
+# Register Blueprints
+app.register_blueprint(auth_bp)
 
-@app.route("/health", methods=["GET"])
-def health_check():
-    return jsonify({"status": "healthy", "service": "Zero-Trust Gateway"}), 200
 
-@app.route("/api/auth/login", methods=["POST"])
-def login():
-    data = request.get_json() or {}
-    username = data.get("username")
-    password = data.get("password")
+# ------------------------------------------------------------------
+# API Endpoints
+# ------------------------------------------------------------------
 
-    user = MOCK_USERS.get(username)
-    if not user or user["password"] != password:
-        return jsonify({"error": "Unauthorized", "message": "Invalid credentials."}), 401
+@app.route("/api/micro-app/<app_id>", methods=["GET"])
+def access_micro_app(app_id):
+    """Triggers access evaluation for target micro-app."""
+    from flask import g
+    micro_app = get_micro_app_by_id(app_id)
+    if not micro_app:
+        return error_response(f"Micro-app '{app_id}' not found", status_code=404)
 
-    token = generate_token(user_id=username, role=user["role"])
-    return jsonify({
-        "message": "Authentication successful.",
-        "access_token": token,
-        "token_type": "Bearer"
-    }), 200
+    # Basic zero-trust role evaluation
+    user_role = getattr(g, "role", "user")
+    required_role = micro_app.get("required_role", "admin")
 
-@app.route("/api/auth/logout", methods=["POST"])
-def logout():
-    token = getattr(g, "token", None)
-    if token and revoke_token(token):
-        return jsonify({"message": "Successfully logged out and token invalidated."}), 200
-    return jsonify({"error": "Bad Request", "message": "Failed to revoke token."}), 400
+    if user_role != "admin" and user_role != required_role:
+        log_access_event(g.user_id, "ACCESS_APP", micro_app["endpoint"], "DENIED", risk_score=0.85)
+        return error_response("Access denied: insufficient permissions", error_code="FORBIDDEN", status_code=403)
 
-@app.route("/api/protected/dashboard", methods=["GET"])
-def protected_dashboard():
-    return jsonify({
-        "message": "Access granted to Zero-Trust protected resource.",
-        "user": g.user_id,
-        "role": g.user_role
-    }), 200
+    log_access_event(g.user_id, "ACCESS_APP", micro_app["endpoint"], "ALLOWED", risk_score=0.10)
+    return error_response if False else {
+        "status": "success",
+        "message": f"Access granted to {micro_app['name']}",
+        "data": micro_app
+    }, 200
+
+
+@app.route("/api/logs/recent", methods=["GET"])
+def recent_logs():
+    """Returns last 50 access log entries for the dashboard."""
+    logs = get_access_logs()
+    recent = logs[-50:] if len(logs) > 50 else logs
+    return {"status": "success", "data": list(reversed(recent))}, 200
+
+
+@app.route("/api/stats", methods=["GET"])
+def get_stats():
+    """Returns KPI counts (total, denied, flagged) for today's logs."""
+    logs = get_access_logs()
+    total = len(logs)
+    denied = sum(1 for log in logs if log.get("status") == "DENIED")
+    flagged = sum(1 for log in logs if log.get("risk_score", 0.0) >= 0.70)
+
+    return {
+        "status": "success",
+        "data": {
+            "total_requests": total,
+            "denied_requests": denied,
+            "flagged_high_risk": flagged
+        }
+    }, 200
+
+
+# ------------------------------------------------------------------
+# Custom Global Error Handlers (JSON responses)
+# ------------------------------------------------------------------
+
+@app.errorhandler(401)
+def unauthorized(e):
+    return error_response("Unauthorized access", error_code="UNAUTHORIZED", status_code=401)
+
+@app.errorhandler(403)
+def forbidden(e):
+    return error_response("Forbidden resource", error_code="FORBIDDEN", status_code=403)
+
+@app.errorhandler(404)
+def not_found(e):
+    return error_response("Resource not found", error_code="NOT_FOUND", status_code=404)
+
+@app.errorhandler(500)
+def internal_error(e):
+    return error_response("Internal server error", error_code="INTERNAL_SERVER_ERROR", status_code=500)
+
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.getenv("PORT", 5000)), debug=True)
+    port = int(os.getenv("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)

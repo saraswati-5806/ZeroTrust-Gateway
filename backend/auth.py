@@ -1,58 +1,78 @@
-import os
-import uuid
-from datetime import datetime, timedelta, timezone
-import jwt
-import redis
+from flask import Blueprint, request, make_response, g
+from backend.models import success_response, error_response
+from backend.database.db import authenticate_user, generate_token, revoke_token, decode_and_validate_token
 
-# Configuration
-JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "zero-trust-gateway-super-secret-key")
-JWT_ALGORITHM = "HS256"
-JWT_EXPIRATION_HOURS = 2
+auth_bp = Blueprint("auth", __name__, url_prefix="/auth")
 
-# Redis connection for token blocklist
-redis_client = redis.Redis(
-    host=os.getenv("REDIS_HOST", "localhost"),
-    port=int(os.getenv("REDIS_PORT", 6379)),
-    db=0,
-    decode_responses=True
-)
 
-def generate_token(user_id: str, role: str) -> str:
-    """Generate a signed JWT with unique JTI claim for blocklisting."""
-    now = datetime.now(timezone.utc)
-    payload = {
-        "jti": str(uuid.uuid4()),
-        "sub": user_id,
-        "role": role,
-        "iat": now,
-        "exp": now + timedelta(hours=JWT_EXPIRATION_HOURS)
-    }
-    return jwt.encode(payload, JWT_SECRET_KEY, algorithm=JWT_ALGORITHM)
+@auth_bp.route("/login", methods=["POST"])
+def login():
+    """Validates credentials, generates JWT, and sets an httpOnly cookie."""
+    data = request.get_json() or {}
+    username = data.get("username")
+    password = data.get("password")
 
-def decode_and_validate_token(token: str) -> dict:
-    """Validate JWT signature, expiration, and check Redis blocklist."""
-    payload = jwt.decode(token, JWT_SECRET_KEY, algorithms=[JWT_ALGORITHM])
+    if not username or not password:
+        return error_response("Username and password are required", status_code=400)
+
+    user = authenticate_user(username, password)
+    if not user:
+        return error_response("Invalid credentials", error_code="UNAUTHORIZED", status_code=401)
+
+    token = generate_token(user["username"], user["role"])
+
+    resp, status_code = success_response(
+        data={
+            "token": token,
+            "user": {
+                "username": user["username"],
+                "role": user["role"],
+                "device_id": user["device_id"]
+            }
+        },
+        message="Login successful"
+    )
     
-    jti = payload.get("jti")
-    if jti and redis_client.get(f"blocklist:{jti}"):
-        raise jwt.InvalidTokenError("Token has been revoked.")
-        
-    return payload
+    response = make_response(resp, status_code)
+    response.set_cookie("access_token", token, httponly=True, samesite="Lax")
+    return response
 
-def revoke_token(token: str) -> bool:
-    """Revoke a token by adding its JTI to the Redis blocklist with TTL."""
+
+@auth_bp.route("/logout", methods=["POST"])
+def logout():
+    """Revokes active token by adding its JTI to Redis blocklist."""
+    token = getattr(g, "token", None) or request.cookies.get("access_token")
+    if token:
+        revoke_token(token)
+
+    response, status_code = success_response(message="Logged out successfully")
+    res = make_response(response, status_code)
+    res.delete_cookie("access_token")
+    return res
+
+
+@auth_bp.route("/refresh", methods=["POST"])
+def refresh():
+    """Issues new token if current token is valid."""
+    token = getattr(g, "token", None) or request.cookies.get("access_token")
+    if not token:
+        return error_response("Token required for refresh", status_code=401)
+
     try:
-        payload = jwt.decode(token, JWT_SECRET_KEY, algorithms=[JWT_ALGORITHM], options={"verify_exp": False})
-        jti = payload.get("jti")
-        exp = payload.get("exp")
-        
-        if jti and exp:
-            now = datetime.now(timezone.utc).timestamp()
-            remaining_ttl = int(exp - now)
-            
-            if remaining_ttl > 0:
-                redis_client.setex(f"blocklist:{jti}", remaining_ttl, "revoked")
-            return True
-    except jwt.PyJWTError:
-        pass
-    return False
+        payload = decode_and_validate_token(token)
+        new_token = generate_token(payload["sub"], payload["role"])
+        return success_response(data={"token": new_token}, message="Token refreshed")
+    except Exception as e:
+        return error_response(f"Cannot refresh token: {str(e)}", status_code=401)
+
+
+@auth_bp.route("/me", methods=["GET"])
+def get_me():
+    """Returns current user context from JWT claims."""
+    return success_response(data={
+        "username": getattr(g, "user_id", None),
+        "role": getattr(g, "role", None),
+        "device_id": getattr(g, "device_id", None),
+        "login_hour": getattr(g, "login_hour", None),
+        "geo_country": getattr(g, "geo_country", None)
+    })
