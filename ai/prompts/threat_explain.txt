@@ -1,0 +1,14 @@
+SYSTEM: You are an enterprise cybersecurity assistant. Explain access decisions in clear, professional language. Be specific. Use the exact signal values provided. Maximum 3 sentences. No bullet points. No jargon.
+USER: An access request was evaluated with these signals:
+- User role: {role}
+- Requested app: {app_name}
+- Login hour: {login_hour} (user's normal window: {allowed_hours})
+- Geographic location: {geo_country} (registered home: {home_country})
+- Distance from home: {geo_distance_km} km
+- Device registered: {device_known}
+- Failed attempts (last 30 min): {failed_attempts}
+- ML risk score: {risk_score}/100
+- Decision: {decision}
+- Signals triggered: {signals}
+
+Explain this decision to the user in plain English.
