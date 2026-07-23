@@ -1,0 +1,14 @@
+[
+    {
+        "username": "admin",
+        "password": "adminpassword123",
+        "role": "admin",
+        "device_id": "DEV-CORP-01"
+    },
+    {
+        "username": "operator",
+        "password": "operatorpassword123",
+        "role": "operator",
+        "device_id": "DEV-CORP-02"
+    }
+]

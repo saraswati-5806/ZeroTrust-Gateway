@@ -1,0 +1,26 @@
+[
+    {
+        "id": "app-01",
+        "name": "Financial Analytics Dashboard",
+        "endpoint": "/api/apps/finance",
+        "required_role": "admin",
+        "description": "Internal financial reporting and analytics portal.",
+        "status": "active"
+    },
+    {
+        "id": "app-02",
+        "name": "Operations Console",
+        "endpoint": "/api/apps/operations",
+        "required_role": "operator",
+        "description": "System monitoring and operational workflows.",
+        "status": "active"
+    },
+    {
+        "id": "app-03",
+        "name": "User Management Portal",
+        "endpoint": "/api/apps/users",
+        "required_role": "admin",
+        "description": "Administrative user management and policy controls.",
+        "status": "active"
+    }
+]

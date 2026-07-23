@@ -1,0 +1,20 @@
+[
+    {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "timestamp": "2026-07-23T18:30:00.000Z",
+        "username": "admin",
+        "action": "LOGIN",
+        "resource": "/api/auth/login",
+        "status": "ALLOWED",
+        "risk_score": 0.05
+    },
+    {
+        "id": "6fa459a7-ee8a-4512-8baf-211123456789",
+        "timestamp": "2026-07-23T18:35:12.000Z",
+        "username": "operator",
+        "action": "ACCESS_APP",
+        "resource": "/api/apps/operations",
+        "status": "ALLOWED",
+        "risk_score": 0.12
+    }
+]
