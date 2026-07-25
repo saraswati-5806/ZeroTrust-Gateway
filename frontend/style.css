@@ -1,0 +1,2005 @@
+/*=====================================================
+        IBM ZERO TRUST SECURITY GATEWAY
+                STYLE.CSS PART 1
+======================================================*/
+
+/* Google Font */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/*==========================
+        ROOT COLORS
+===========================*/
+
+:root{
+
+    --darkBlue:#33659A;
+    --primaryBlue:#6FA6D0;
+    --lightBlue:#9AC8E5;
+    --background:#C7E4F2;
+
+    --white:#FFFFFF;
+
+    --black:#121212;
+
+    --text:#183B5A;
+
+    --textLight:#4D6E8A;
+
+    --border:#78AED8;
+
+    --success:#2E8B57;
+
+    --warning:#F4A100;
+
+    --danger:#D9534F;
+
+}
+
+/*==========================
+        RESET
+===========================*/
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+    font-family:'Poppins',sans-serif;
+
+    scroll-behavior:smooth;
+
+}
+
+/*==========================
+        BODY
+===========================*/
+html,
+body{
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+    overflow-x:hidden;
+    background:#C7E4F2;
+
+}
+
+/*==========================
+      LOGIN PAGE
+===========================*/
+.login-page{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:100vh;
+
+    width:100%;
+
+    background:linear-gradient(135deg,#C7E4F2,#9AC8E5);
+
+    overflow:hidden;
+
+}
+/*==========================
+      LOGIN CARD
+===========================*/
+
+.login-card{
+.login-card{
+
+    width:520px;
+
+    max-width:90%;
+
+}
+
+}
+.login-card{
+
+    position:relative;
+
+}
+
+.login-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-3px;
+
+    border-radius:22px;
+
+    background:linear-gradient(
+        45deg,
+        #33659A,
+        #6FA6D0,
+        #9AC8E5,
+        #33659A
+    );
+
+    z-index:-1;
+
+    filter:blur(18px);
+
+    opacity:.35;
+
+}
+
+/*==========================
+      LOGIN LOGO
+===========================*/
+
+.login-logo{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+.login-logo i{
+
+    font-size:70px;
+
+    color:var(--darkBlue);
+
+    margin-bottom:15px;
+
+}
+
+.login-logo h1{
+
+    font-size:38px;
+
+    color:var(--darkBlue);
+
+    font-weight:700;
+
+}
+
+.login-logo h2{
+
+    margin-top:8px;
+
+    color:var(--text);
+
+    font-size:22px;
+
+}
+
+.login-logo p{
+
+    color:var(--textLight);
+
+    margin-top:10px;
+
+}
+
+/*==========================
+      INPUT GROUP
+===========================*/
+
+.input-group{
+
+    margin-bottom:22px;
+
+}
+
+.input-group label{
+
+    display:block;
+
+    font-weight:600;
+
+    color:var(--text);
+
+    margin-bottom:8px;
+
+}
+
+.input-group label i{
+
+    color:var(--darkBlue);
+
+    margin-right:8px;
+
+}
+
+.input-group input{
+
+    width:100%;
+
+    padding:14px 18px;
+
+    border-radius:12px;
+
+    border:2px solid var(--lightBlue);
+
+    background:#F5FBFF;
+
+    color:var(--black);
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.input-group input:focus{
+
+    outline:none;
+
+    border-color:var(--darkBlue);
+
+    box-shadow:0 0 12px rgba(51,101,154,.25);
+
+}
+
+/*==========================
+      LOGIN INFO
+===========================*/
+
+.login-info{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+    font-size:14px;
+
+}
+
+.login-info a{
+
+    text-decoration:none;
+
+    color:var(--darkBlue);
+
+    font-weight:600;
+
+}
+
+.remember{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+
+/*==========================
+      LOGIN BUTTON
+===========================*/
+#loginBtn{
+
+    background:linear-gradient(90deg,#33659A,#6FA6D0);
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    transition:.4s;
+
+}
+
+#loginBtn:hover{
+
+    transform:scale(1.05);
+
+    box-shadow:0 15px 35px rgba(51,101,154,.35);
+
+}
+/*==========================
+      DEMO BOX
+===========================*/
+
+.demo-box{
+
+    margin-top:30px;
+
+    background:#EAF6FD;
+
+    padding:18px;
+
+    border-left:5px solid var(--darkBlue);
+
+    border-radius:10px;
+
+}
+
+.demo-box h3{
+
+    color:var(--darkBlue);
+
+    margin-bottom:10px;
+
+}
+
+.demo-box p{
+
+    color:var(--text);
+
+    font-size:14px;
+
+    margin:5px 0;
+
+}
+
+/*==========================
+      LOGIN ERROR
+===========================*/
+
+#loginError{
+
+    margin-top:15px;
+
+    color:var(--danger);
+
+    text-align:center;
+
+    font-weight:600;
+
+}
+
+/*==========================
+      SECURITY FOOTER
+===========================*/
+
+.security-footer{
+
+    margin-top:25px;
+
+    text-align:center;
+
+    color:var(--darkBlue);
+
+    font-weight:600;
+
+}
+
+.security-footer i{
+
+    margin-right:8px;
+
+}
+/*=====================================================
+            DASHBOARD LAYOUT
+======================================================*/
+
+.dashboard{
+
+    width:100%;
+
+    min-height:100vh;
+
+}
+
+/*==========================
+        HEADER
+===========================*/
+
+header{
+
+    width:100%;
+
+    height:85px;
+
+    background:var(--darkBlue);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 35px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
+
+}
+
+.header-left h2{
+
+    color:var(--white);
+
+    font-size:28px;
+
+    font-weight:700;
+
+}
+
+.header-left p{
+
+    color:#EAF6FD;
+
+    font-size:14px;
+
+    margin-top:4px;
+
+}
+
+.shield-icon{
+
+    margin-right:10px;
+
+    color:#C7E4F2;
+
+}
+
+/*==========================
+      HEADER RIGHT
+===========================*/
+
+.header-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+
+}
+
+.notification{
+
+    width:50px;
+
+    height:50px;
+
+    background:#4C7DB2;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    position:relative;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.notification:hover{
+
+    transform:scale(1.08);
+
+}
+
+.notification i{
+
+    color:white;
+
+    font-size:20px;
+
+}
+
+.notification span{
+
+    position:absolute;
+
+    top:-5px;
+
+    right:-5px;
+
+    width:22px;
+
+    height:22px;
+
+    background:#D9534F;
+
+    color:white;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:11px;
+
+    font-weight:600;
+
+}
+
+/*==========================
+      ADMIN PROFILE
+===========================*/
+
+.admin-profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.admin-profile img{
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:50%;
+
+    border:3px solid white;
+
+}
+
+.admin-profile h4{
+
+    color:white;
+
+    font-size:16px;
+
+}
+
+.admin-profile small{
+
+    color:#EAF6FD;
+
+}
+
+/*==========================
+      MAIN CONTAINER
+===========================*/
+
+.main-container{
+
+    display:flex;
+
+}
+
+/*==========================
+        SIDEBAR
+===========================*/
+
+aside{
+
+    width:260px;
+
+    min-height:calc(100vh - 85px);
+
+    background:var(--darkBlue);
+
+    padding:30px 20px;
+
+    position:sticky;
+
+    top:85px;
+
+}
+
+.sidebar-title{
+
+    margin-bottom:25px;
+
+}
+
+.sidebar-title h3{
+
+    color:white;
+
+    text-align:center;
+
+    letter-spacing:1px;
+
+}
+
+aside ul{
+
+    list-style:none;
+
+}
+
+aside ul li{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:15px;
+
+    margin-bottom:12px;
+
+    border-radius:12px;
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-weight:500;
+
+}
+
+aside ul li i{
+
+    width:22px;
+
+    text-align:center;
+
+    color:#C7E4F2;
+
+}
+
+aside ul li:hover{
+
+    background:var(--primaryBlue);
+
+    transform:translateX(6px);
+
+}
+
+aside ul li.active{
+
+    background:var(--lightBlue);
+
+    color:var(--text);
+
+    font-weight:700;
+
+}
+
+aside ul li.active i{
+
+    color:var(--text);
+
+}
+
+/*==========================
+        MAIN
+===========================*/
+
+main{
+
+    flex:1;
+
+    padding:35px;
+
+}
+
+/*==========================
+      PAGE TITLE
+===========================*/
+
+.page-title{
+
+    margin-bottom:30px;
+
+}
+
+.page-title h1{
+
+    color:var(--text);
+
+    font-size:34px;
+
+    font-weight:700;
+
+}
+
+.page-title p{
+
+    margin-top:8px;
+
+    color:var(--textLight);
+
+    font-size:15px;
+
+}
+
+/*==========================
+      OVERVIEW CARDS
+===========================*/
+
+.overview-cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+
+    margin-bottom:35px;
+
+}
+
+.card{
+
+    background:#F4FAFE;
+
+    border-left:6px solid var(--darkBlue);
+
+    border-radius:18px;
+
+    padding:25px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 12px 25px rgba(0,0,0,.15);
+
+}
+
+.icon{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:30px;
+
+    color:white;
+
+}
+
+.icon.cyan{
+
+    background:#33659A;
+
+}
+
+.icon.green{
+
+    background:#2E8B57;
+
+}
+
+.icon.orange{
+
+    background:#F4A100;
+
+}
+
+.icon.red{
+
+    background:#D9534F;
+
+}
+
+.card-info h3{
+
+    color:var(--textLight);
+
+    font-size:15px;
+
+    margin-bottom:5px;
+
+}
+
+.card-info h2{
+
+    color:var(--text);
+
+    font-size:30px;
+
+    font-weight:700;
+
+}
+
+.card-info p{
+
+    color:var(--darkBlue);
+
+    font-weight:600;
+
+}
+/*=====================================================
+            STYLE.CSS PART 3
+       SECURITY PANELS & ANALYTICS
+======================================================*/
+
+/*==========================
+      DASHBOARD GRID
+===========================*/
+
+.dashboard-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:30px;
+
+    margin-bottom:35px;
+
+}
+
+/*==========================
+         PANELS
+===========================*/
+
+.panel{
+
+    background:#F4FAFE;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    border:1px solid #BFDDEC;
+
+}
+
+/*==========================
+      PANEL HEADER
+===========================*/
+
+.panel-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.panel-header h2{
+
+    color:var(--text);
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+.panel-header i{
+
+    color:var(--darkBlue);
+
+    margin-right:8px;
+
+}
+
+/*==========================
+      STATUS LIST
+===========================*/
+
+.status-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.status-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:14px 18px;
+
+    background:#EAF6FD;
+
+    border-radius:12px;
+
+}
+
+.status-item span:first-child{
+
+    color:var(--text);
+
+    font-weight:600;
+
+}
+
+/*==========================
+      STATUS BADGES
+===========================*/
+
+.status{
+
+    padding:6px 14px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+.status.success{
+
+    background:#D9F5E5;
+
+    color:#2E8B57;
+
+}
+
+.status.warning{
+
+    background:#FFF4D8;
+
+    color:#D18A00;
+
+}
+
+.status.danger{
+
+    background:#FDE4E4;
+
+    color:#D9534F;
+
+}
+
+/*==========================
+    ZERO TRUST SCORE
+===========================*/
+
+.score-box{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:30px;
+
+}
+
+.score-circle{
+
+    width:180px;
+
+    height:180px;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,var(--darkBlue),var(--primaryBlue));
+
+    color:white;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    box-shadow:0 8px 20px rgba(51,101,154,.25);
+
+}
+
+.score-circle h1{
+
+    font-size:50px;
+
+    font-weight:700;
+
+}
+
+.score-circle p{
+
+    font-size:15px;
+
+}
+
+.score-details{
+
+    flex:1;
+
+}
+
+.score-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:18px;
+
+    padding-bottom:10px;
+
+    border-bottom:1px solid #D8EAF5;
+
+}
+
+.score-row span{
+
+    color:var(--text);
+
+    font-weight:600;
+
+}
+
+.score-row strong{
+
+    color:var(--darkBlue);
+
+}
+
+/*==========================
+      NETWORK HEALTH
+===========================*/
+
+.network-health{
+
+    margin-bottom:35px;
+
+}
+
+.health-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:22px;
+
+}
+
+.health-card{
+
+    background:#F4FAFE;
+
+    border-radius:18px;
+
+    text-align:center;
+
+    padding:25px;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.health-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.health-card h3{
+
+    color:var(--textLight);
+
+    font-size:16px;
+
+}
+
+.health-card h1{
+
+    margin:15px 0;
+
+    font-size:42px;
+
+    color:var(--darkBlue);
+
+}
+
+.health-card p{
+
+    color:var(--text);
+
+    font-weight:600;
+
+}
+
+/*==========================
+      CHART SECTION
+===========================*/
+
+.analytics-section{
+
+    margin-bottom:35px;
+
+}
+
+.chart-container{
+
+    width:100%;
+
+    height:420px;
+
+    background:#EAF6FD;
+
+    border-radius:15px;
+
+    padding:20px;
+
+}
+
+/*==========================
+      METRIC CARDS
+===========================*/
+
+.metrics-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:22px;
+
+    margin-bottom:35px;
+
+}
+
+.metric-card{
+
+    background:#F4FAFE;
+
+    border-radius:18px;
+
+    text-align:center;
+
+    padding:28px;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.metric-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.metric-card i{
+
+    font-size:34px;
+
+    color:var(--darkBlue);
+
+    margin-bottom:12px;
+
+}
+
+.metric-card h3{
+
+    color:var(--textLight);
+
+    margin-bottom:10px;
+
+}
+
+.metric-card h2{
+
+    color:var(--text);
+
+    font-size:34px;
+
+    font-weight:700;
+
+}
+
+/*==========================
+      BOTTOM GRID
+===========================*/
+
+.bottom-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:30px;
+
+    margin-bottom:35px;
+
+}
+/*=====================================================
+            STYLE.CSS PART 4
+      THREATS • ALERTS • SESSIONS • WATSON
+======================================================*/
+
+/*==========================
+      THREAT FEED
+===========================*/
+
+.threat-feed{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.feed-item{
+
+    padding:18px;
+
+    border-radius:15px;
+
+    background:#F4FAFE;
+
+    border-left:6px solid var(--primaryBlue);
+
+    transition:.3s;
+
+}
+
+.feed-item:hover{
+
+    transform:translateX(6px);
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.feed-item h4{
+
+    color:var(--text);
+
+    font-size:17px;
+
+    margin-bottom:8px;
+
+    font-weight:700;
+
+}
+
+.feed-item p{
+
+    color:var(--textLight);
+
+    line-height:1.6;
+
+    margin-bottom:8px;
+
+}
+
+.feed-item small{
+
+    color:var(--darkBlue);
+
+    font-weight:600;
+
+}
+
+.feed-item.critical{
+
+    border-left-color:#D9534F;
+
+}
+
+.feed-item.high{
+
+    border-left-color:#F4A100;
+
+}
+
+.feed-item.medium{
+
+    border-left-color:#33659A;
+
+}
+
+.feed-item.low{
+
+    border-left-color:#2E8B57;
+
+}
+
+/*==========================
+      ALERT LIST
+===========================*/
+
+.alerts-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.alert-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:15px;
+
+    background:#EAF6FD;
+
+    border-radius:12px;
+
+    color:var(--text);
+
+    font-weight:600;
+
+}
+
+.alert-dot{
+
+    width:14px;
+
+    height:14px;
+
+    border-radius:50%;
+
+}
+
+.alert-dot.red{
+
+    background:#D9534F;
+
+}
+
+.alert-dot.orange{
+
+    background:#F4A100;
+
+}
+
+.alert-dot.blue{
+
+    background:#33659A;
+
+}
+
+.alert-dot.green{
+
+    background:#2E8B57;
+
+}
+
+/*==========================
+      SESSION TABLE
+===========================*/
+
+.session-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:15px;
+
+    overflow:hidden;
+
+    border-radius:15px;
+
+}
+
+.session-table thead{
+
+    background:var(--darkBlue);
+
+}
+
+.session-table th{
+
+    color:white;
+
+    padding:16px;
+
+    text-align:left;
+
+    font-size:15px;
+
+}
+
+.session-table td{
+
+    padding:16px;
+
+    background:#F4FAFE;
+
+    color:var(--text);
+
+    border-bottom:1px solid #D8EAF5;
+
+    font-weight:500;
+
+}
+
+.session-table tbody tr:hover{
+
+    background:#EAF6FD;
+
+}
+
+/*==========================
+      WATSON PANEL
+===========================*/
+
+.watson-box{
+
+    margin-top:15px;
+
+    background:#F4FAFE;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    text-align:center;
+
+}
+
+.watson-placeholder i{
+
+    font-size:65px;
+
+    color:var(--darkBlue);
+
+    margin-bottom:20px;
+
+}
+
+.watson-placeholder h3{
+
+    color:var(--text);
+
+    margin-bottom:12px;
+
+    font-size:24px;
+
+}
+
+.watson-placeholder p{
+
+    color:var(--textLight);
+
+    line-height:1.7;
+
+    margin-bottom:18px;
+
+}
+
+.watson-placeholder ul{
+
+    list-style:none;
+
+    margin:20px 0;
+
+}
+
+.watson-placeholder li{
+
+    padding:8px;
+
+    color:var(--text);
+
+    font-weight:600;
+
+}
+
+.watson-btn{
+
+    padding:14px 28px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:var(--darkBlue);
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.watson-btn:hover{
+
+    background:var(--primaryBlue);
+
+    transform:translateY(-3px);
+
+    box-shadow:0 8px 18px rgba(51,101,154,.25);
+
+}
+/*=====================================================
+            STYLE.CSS PART 5
+      FOOTER • RESPONSIVE • ANIMATIONS
+======================================================*/
+
+/*==========================
+      COMPLIANCE GRID
+===========================*/
+
+.compliance-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
+    margin-top:30px;
+
+}
+
+.compliance-card{
+
+    background:#F4FAFE;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.compliance-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 15px 30px rgba(0,0,0,.12);
+
+}
+
+.compliance-card i{
+
+    color:var(--darkBlue);
+
+    margin-bottom:18px;
+
+}
+
+.compliance-card h3{
+
+    color:var(--text);
+
+    margin-bottom:15px;
+
+    font-size:20px;
+
+}
+
+.badge{
+
+    display:inline-block;
+
+    padding:8px 18px;
+
+    border-radius:30px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+}
+
+.badge.success{
+
+    background:#D9F5E5;
+
+    color:#2E8B57;
+
+}
+
+/*==========================
+      SUMMARY GRID
+===========================*/
+
+.summary-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
+    margin-top:20px;
+
+}
+
+.summary-card{
+
+    background:#EAF6FD;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    text-align:center;
+
+}
+
+.summary-card h3{
+
+    color:var(--textLight);
+
+    margin-bottom:12px;
+
+}
+
+.summary-card h1{
+
+    color:var(--darkBlue);
+
+    font-size:40px;
+
+    font-weight:700;
+
+}
+
+/*==========================
+        FOOTER
+===========================*/
+
+footer{
+
+    margin-top:40px;
+
+    background:var(--darkBlue);
+
+    color:white;
+
+    padding:20px 35px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+}
+
+.footer-left{
+
+    font-size:14px;
+
+    line-height:1.7;
+
+}
+
+.footer-right{
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+.footer-right i{
+
+    margin-right:8px;
+
+    color:#C7E4F2;
+
+}
+
+/*==========================
+      SCROLLBAR
+===========================*/
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#C7E4F2;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#33659A;
+
+    border-radius:10px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#6FA6D0;
+
+}
+
+/*==========================
+      ANIMATIONS
+===========================*/
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.card,
+.panel,
+.health-card,
+.metric-card,
+.compliance-card{
+
+    animation:fadeIn .8s ease;
+
+}
+
+/*==========================
+      RESPONSIVE
+===========================*/
+
+@media(max-width:1200px){
+
+    .dashboard-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .bottom-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:992px){
+
+    .main-container{
+
+        flex-direction:column;
+
+    }
+
+    aside{
+
+        width:100%;
+
+        min-height:auto;
+
+        position:relative;
+
+        top:0;
+
+    }
+
+    main{
+
+        padding:20px;
+
+    }
+
+    header{
+
+        flex-direction:column;
+
+        height:auto;
+
+        padding:20px;
+
+        gap:15px;
+
+        text-align:center;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .overview-cards{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .health-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .metrics-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .compliance-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .summary-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .score-box{
+
+        flex-direction:column;
+
+    }
+
+    .session-table{
+
+        display:block;
+
+        overflow-x:auto;
+
+        white-space:nowrap;
+
+    }
+
+}
+
+@media(max-width:500px){
+
+    .login-card{
+
+        width:100%;
+
+        padding:25px;
+
+    }
+
+    .login-logo h1{
+
+        font-size:30px;
+
+    }
+
+    .login-logo h2{
+
+        font-size:18px;
+
+    }
+
+    .header-left h2{
+
+        font-size:20px;
+
+    }
+
+    .page-title h1{
+
+        font-size:28px;
+
+    }
+
+}
+.login-card{
+
+    transition:.4s;
+
+}
+
+.login-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 25px 60px rgba(51,101,154,.30);
+
+}
+body{
+
+    animation:bgMove 8s infinite alternate;
+
+}
+
+@keyframes bgMove{
+
+    0%{
+
+        background:#C7E4F2;
+
+    }
+
+    100%{
+
+        background:#9AC8E5;
+
+    }
+
+}
+input{
+
+    transition:.3s;
+
+}
+
+input:hover{
+
+    border-color:#33659A;
+
+}
