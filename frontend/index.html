@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IBM Zero Trust Security Gateway</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ===========================
+     LOGIN PAGE
+=========================== -->
+
+<div class="login-page" id="loginScreen">
+
+    <div class="login-card">
+
+        <div class="login-logo">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <h1>IBM</h1>
+
+            <h2>Zero Trust Security Gateway</h2>
+
+            <p>
+                Secure Authentication Portal
+            </p>
+
+        </div>
+
+        <form id="loginForm">
+
+            <div class="input-group">
+
+                <label>
+                    <i class="fa-solid fa-user-shield"></i>
+                    User ID
+                </label>
+
+                <input
+                    type="text"
+                    id="userid"
+                    placeholder="Enter User ID"
+                    autocomplete="off"
+                    required>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>
+                    <i class="fa-solid fa-lock"></i>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter Password"
+                    required>
+
+            </div>
+
+            <div class="login-info">
+
+                <div class="remember">
+
+                    <input type="checkbox" id="remember">
+
+                    <label for="remember">
+                        Remember this device
+                    </label>
+
+                </div>
+
+                <a href="#">
+                    Forgot Password?
+                </a>
+
+            </div>
+
+            <button
+                type="button"
+                id="loginBtn">
+
+                <i class="fa-solid fa-right-to-bracket"></i>
+
+                Login Securely
+
+            </button>
+
+            <p id="loginError"></p>
+
+        </form>
+
+    
+
+        <div class="security-footer">
+
+            <i class="fa-solid fa-fingerprint"></i>
+            Multi-Factor Authentication Enabled
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===========================
+     DASHBOARD STARTS HERE
+=========================== -->
+
+<div class="dashboard" id="dashboard" style="display:none;">
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header>
+
+    <div class="header-left">
+
+        <h2>
+            <i class="fa-solid fa-shield-halved shield-icon"></i>
+            IBM Zero Trust Security Gateway
+        </h2>
+
+        <p>Enterprise Cyber Security Dashboard</p>
+
+    </div>
+
+    <div class="header-right">
+
+        <div class="notification">
+
+            <i class="fa-solid fa-bell"></i>
+
+            <span>5</span>
+
+        </div>
+
+        <div class="admin-profile">
+
+            <img src="https://ui-avatars.com/api/?name=IBM+Admin&background=33659A&color=fff" alt="Admin">
+
+            <div>
+
+                <h4>IBM Administrator</h4>
+
+                <small>Security Operations Center</small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+<!-- =====================================================
+     MAIN CONTAINER
+====================================================== -->
+
+<div class="main-container">
+
+<!-- =====================================================
+     SIDEBAR
+====================================================== -->
+
+<aside>
+
+    <div class="sidebar-title">
+
+        <h3>Navigation</h3>
+
+    </div>
+
+    <ul>
+
+        <li class="active">
+            <i class="fa-solid fa-gauge-high"></i>
+            Dashboard
+        </li>
+
+        <li>
+            <i class="fa-solid fa-user-shield"></i>
+            Identity Access
+        </li>
+
+        <li>
+            <i class="fa-solid fa-fingerprint"></i>
+            Authentication
+        </li>
+
+        <li>
+            <i class="fa-solid fa-network-wired"></i>
+            Network Security
+        </li>
+
+        <li>
+            <i class="fa-solid fa-server"></i>
+            Endpoint Security
+        </li>
+
+        <li>
+            <i class="fa-solid fa-shield-virus"></i>
+            Threat Detection
+        </li>
+
+        <li>
+            <i class="fa-solid fa-chart-line"></i>
+            Analytics
+        </li>
+
+        <li>
+            <i class="fa-solid fa-lock"></i>
+            Policies
+        </li>
+
+        <li>
+            <i class="fa-solid fa-gear"></i>
+            Settings
+        </li>
+
+    </ul>
+
+</aside>
+
+<!-- =====================================================
+     MAIN CONTENT
+====================================================== -->
+
+<main>
+
+<div class="page-title">
+
+    <h1>Security Operations Dashboard</h1>
+
+    <p>
+        Monitor authentication, network health, endpoint security,
+        identity verification and Zero Trust compliance in real time.
+    </p>
+
+</div>
+
+<!-- =====================================================
+     OVERVIEW CARDS
+====================================================== -->
+
+<div class="overview-cards">
+
+    <div class="card">
+
+        <div class="icon cyan">
+            <i class="fa-solid fa-user-check"></i>
+        </div>
+
+        <div class="card-info">
+
+            <h3>Verified Users</h3>
+
+            <h2>1,248</h2>
+
+            <p>+18 Today</p>
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="icon green">
+            <i class="fa-solid fa-shield-check"></i>
+        </div>
+
+        <div class="card-info">
+
+            <h3>Authentication Success</h3>
+
+            <h2>99.92%</h2>
+
+            <p>Last 24 Hours</p>
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="icon orange">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+
+        <div class="card-info">
+
+            <h3>Security Alerts</h3>
+
+            <h2>17</h2>
+
+            <p>Need Investigation</p>
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="icon red">
+            <i class="fa-solid fa-bug"></i>
+        </div>
+
+        <div class="card-info">
+
+            <h3>Threats Blocked</h3>
+
+            <h2>482</h2>
+
+            <p>Today</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     DASHBOARD GRID STARTS
+====================================================== -->
+
+<div class="dashboard-grid">
+<!-- =====================================================
+     LIVE ACCESS STATUS
+====================================================== -->
+
+<div class="panel">
+
+    <div class="panel-header">
+
+        <h2>
+            <i class="fa-solid fa-user-shield"></i>
+            Live Authentication Status
+        </h2>
+
+    </div>
+
+    <div class="status-list">
+
+        <div class="status-item">
+            <span>Identity Verification</span>
+            <span class="status success">Verified</span>
+        </div>
+
+        <div class="status-item">
+            <span>Multi-Factor Authentication</span>
+            <span class="status success">Enabled</span>
+        </div>
+
+        <div class="status-item">
+            <span>Device Trust</span>
+            <span class="status success">Trusted</span>
+        </div>
+
+        <div class="status-item">
+            <span>Firewall Protection</span>
+            <span class="status success">Active</span>
+        </div>
+
+        <div class="status-item">
+            <span>VPN Connection</span>
+            <span class="status warning">Monitoring</span>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     ZERO TRUST SCORE
+====================================================== -->
+
+<div class="panel">
+
+    <div class="panel-header">
+
+        <h2>
+            <i class="fa-solid fa-shield-halved"></i>
+            Zero Trust Security Score
+        </h2>
+
+    </div>
+
+    <div class="score-box">
+
+        <div class="score-circle">
+
+            <h1>96%</h1>
+
+            <p>Security Score</p>
+
+        </div>
+
+        <div class="score-details">
+
+            <div class="score-row">
+                <span>User Authentication</span>
+                <strong>100%</strong>
+            </div>
+
+            <div class="score-row">
+                <span>Device Compliance</span>
+                <strong>95%</strong>
+            </div>
+
+            <div class="score-row">
+                <span>Network Security</span>
+                <strong>97%</strong>
+            </div>
+
+            <div class="score-row">
+                <span>Threat Protection</span>
+                <strong>92%</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+<!-- =====================================================
+     NETWORK HEALTH
+====================================================== -->
+
+<div class="network-health">
+
+    <div class="health-grid">
+
+        <div class="health-card">
+
+            <h3>Active Devices</h3>
+
+            <h1>1,528</h1>
+
+            <p>Connected Securely</p>
+
+        </div>
+
+        <div class="health-card">
+
+            <h3>Blocked Attacks</h3>
+
+            <h1>482</h1>
+
+            <p>Today's Total</p>
+
+        </div>
+
+        <div class="health-card">
+
+            <h3>Firewall Status</h3>
+
+            <h1>100%</h1>
+
+            <p>Operational</p>
+
+        </div>
+
+        <div class="health-card">
+
+            <h3>Server Health</h3>
+
+            <h1>99%</h1>
+
+            <p>Excellent</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     REAL-TIME SECURITY EVENTS
+====================================================== -->
+
+<div class="panel analytics-section">
+
+    <div class="panel-header">
+
+        <h2>
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            Real-Time Security Events
+
+        </h2>
+
+    </div>
+
+    <div class="chart-container">
+
+        <canvas id="securityChart"></canvas>
+
+<div class="panel">
+
+    <div class="panel-header">
+
+        <h2>Decision Distribution</h2>
+
+    </div>
+
+    <div class="chart-container">
+
+        <canvas id="decisionChart"></canvas>
+
+    </div>
+
+</div>
+
+        <canvas id="decisionChart"></canvas>
+
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     SECURITY METRICS
+====================================================== -->
+
+<div class="metrics-grid">
+
+    <div class="metric-card">
+
+        <i class="fa-solid fa-fingerprint"></i>
+
+        <h3>Successful Logins</h3>
+
+        <h2>2,548</h2>
+
+    </div>
+
+    <div class="metric-card">
+
+        <i class="fa-solid fa-user-lock"></i>
+
+        <h3>Failed Logins</h3>
+
+        <h2>37</h2>
+
+    </div>
+
+    <div class="metric-card">
+
+        <i class="fa-solid fa-shield-virus"></i>
+
+        <h3>Threats Detected</h3>
+
+        <h2>128</h2>
+
+    </div>
+
+    <div class="metric-card">
+
+        <i class="fa-solid fa-server"></i>
+
+        <h3>Protected Servers</h3>
+
+        <h2>84</h2>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     BOTTOM GRID STARTS
+====================================================== -->
+
+<div class="bottom-grid">
+<!-- =====================================================
+     THREAT INTELLIGENCE FEED
+====================================================== -->
+
+<div class="panel">
+
+    <div class="panel-header">
+
+        <h2>
+            <i class="fa-solid fa-shield-virus"></i>
+            Threat Intelligence Feed
+        </h2>
+
+    </div>
+
+    <div class="threat-feed">
+
+        <div class="feed-item critical">
+
+            <h4>Critical Threat Detected</h4>
+
+            <p>
+                Ransomware activity blocked successfully on Endpoint SRV-04.
+                No data loss detected.
+            </p>
+
+            <small>2 Minutes Ago</small>
+
+        </div>
+
+        <div class="feed-item high">
+
+            <h4>Unauthorized Login Attempt</h4>
+
+            <p>
+                Multiple failed login attempts detected from an unknown IP address.
+            </p>
+
+            <small>8 Minutes Ago</small>
+
+        </div>
+
+        <div class="feed-item medium">
+
+            <h4>Firewall Update</h4>
+
+            <p>
+                Firewall rules updated successfully with the latest threat signatures.
+            </p>
+
+            <small>20 Minutes Ago</small>
+
+        </div>
+
+        <div class="feed-item low">
+
+            <h4>System Backup Completed</h4>
+
+            <p>
+                Daily encrypted backup completed successfully.
+            </p>
+
+            <small>1 Hour Ago</small>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     RECENT SECURITY ALERTS
+====================================================== -->
+
+<div class="panel">
+
+    <div class="panel-header">
+
+        <h2>
+            <i class="fa-solid fa-bell"></i>
+            Recent Security Alerts
+        </h2>
+
+    </div>
+
+    <div class="alerts-list">
+
+        <div class="alert-item">
+
+            <span class="alert-dot red"></span>
+
+            Malware signature detected and quarantined successfully.
+
+        </div>
+
+        <div class="alert-item">
+
+            <span class="alert-dot orange"></span>
+
+            VPN session requires additional verification.
+
+        </div>
+
+        <div class="alert-item">
+
+            <span class="alert-dot blue"></span>
+
+            Security policy updated by IBM Administrator.
+
+        </div>
+
+        <div class="alert-item">
+
+            <span class="alert-dot green"></span>
+
+            Endpoint compliance verification completed.
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+<!-- =====================================================
+     ACTIVE USER SESSIONS
+====================================================== -->
+
+<div class="panel">
+
+    <div class="panel-header">
+
+        <h2>
+
+            <i class="fa-solid fa-users"></i>
+
+            Active User Sessions
+
+        </h2>
+
+    </div>
+
+    <table class="session-table">
+
+        <thead>
+
+            <tr>
+
+                <th>User</th>
+
+                <th>Device</th>
+
+                <th>Location</th>
+
+                <th>Status</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr>
+
+                <td>IBM2026</td>
+
+                <td>Windows 11</td>
+
+                <td>Mumbai</td>
+
+                <td>
+                    <span class="status success">Verified</span>
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>SecurityAdmin</td>
+
+                <td>macOS</td>
+
+                <td>Pune</td>
+
+                <td>
+                    <span class="status success">Verified</span>
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>NetworkOps</td>
+
+                <td>Ubuntu</td>
+
+                <td>Bengaluru</td>
+
+                <td>
+                    <span class="status warning">Monitoring</span>
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>RemoteUser01</td>
+
+                <td>Android</td>
+
+                <td>Delhi</td>
+
+                <td>
+                    <span class="status danger">Blocked</span>
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<!-- =====================================================
+     IBM WATSON ASSISTANT
+====================================================== -->
+
+<div class="panel">
+
+    <div class="panel-header">
+
+        <h2>
+
+            <i class="fa-solid fa-robot"></i>
+
+            IBM Watson Assistant
+
+        </h2>
+
+    </div>
+
+    <div class="watson-box">
+
+        <div class="watson-placeholder">
+
+            <i class="fa-solid fa-comments"></i>
+
+            <h3>AI Security Assistant</h3>
+
+            <p>
+
+                IBM Watson Assistant will appear here.
+
+                It can assist administrators with:
+
+            </p>
+
+            <ul>
+
+                <li>✔ Threat Investigation</li>
+
+                <li>✔ Identity Verification</li>
+
+                <li>✔ Security Recommendations</li>
+
+                <li>✔ Zero Trust Policy Guidance</li>
+
+                <li>✔ Incident Response Support</li>
+
+            </ul>
+
+            <button class="watson-btn">
+
+                Launch Assistant
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- =====================================================
+     COMPLIANCE STATUS
+====================================================== -->
+
+<div class="compliance-grid">
+
+    <div class="compliance-card">
+
+        <i class="fa-solid fa-circle-check fa-3x"></i>
+
+        <h3>ISO 27001</h3>
+
+        <span class="badge success">Compliant</span>
+
+    </div>
+
+    <div class="compliance-card">
+
+        <i class="fa-solid fa-lock fa-3x"></i>
+
+        <h3>Zero Trust Policy</h3>
+
+        <span class="badge success">Enabled</span>
+
+    </div>
+
+    <div class="compliance-card">
+
+        <i class="fa-solid fa-user-check fa-3x"></i>
+
+        <h3>Identity Verification</h3>
+
+        <span class="badge success">Verified</span>
+
+    </div>
+
+    <div class="compliance-card">
+
+        <i class="fa-solid fa-shield-halved fa-3x"></i>
+
+        <h3>Firewall Status</h3>
+
+        <span class="badge success">Protected</span>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     SECURITY SUMMARY
+====================================================== -->
+
+<div class="panel" style="margin-top:35px;">
+
+    <div class="panel-header">
+
+        <h2>
+
+            <i class="fa-solid fa-chart-pie"></i>
+
+            Enterprise Security Summary
+
+        </h2>
+
+    </div>
+
+    <div class="summary-grid">
+
+        <div class="summary-card">
+
+            <h3>Overall Security Score</h3>
+
+            <h1>96%</h1>
+
+        </div>
+
+        <div class="summary-card">
+
+            <h3>Protected Devices</h3>
+
+            <h1>1,528</h1>
+
+        </div>
+
+        <div class="summary-card">
+
+            <h3>Threats Blocked</h3>
+
+            <h1>482</h1>
+
+        </div>
+
+        <div class="summary-card">
+
+            <h3>Compliance Rate</h3>
+
+            <h1>100%</h1>
+
+        </div>
+
+    </div>
+
+</div>
+
+<section class="panel">
+
+    <div class="panel-header">
+
+        <h2>Geo Access Overview</h2>
+
+    </div>
+
+    <table class="session-table">
+
+        <thead>
+
+            <tr>
+
+                <th>Country</th>
+
+                <th>Attempts</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr>
+
+                <td>India</td>
+
+                <td>421</td>
+
+            </tr>
+
+            <tr>
+
+                <td>United States</td>
+
+                <td>183</td>
+
+            </tr>
+
+            <tr>
+
+                <td>Germany</td>
+
+                <td>64</td>
+
+            </tr>
+
+            <tr>
+
+                <td>Japan</td>
+
+                <td>42</td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</section>
+
+<section class="panel">
+
+    <div class="panel-header">
+
+        <h2>
+            <i class="fas fa-brain"></i>
+            AI Threat Explanation
+        </h2>
+
+    </div>
+
+    <div class="feed-item critical">
+
+        <h4>
+            Impossible Travel Detection
+        </h4>
+
+        <p>
+
+            User login activity detected from
+            multiple geographic locations
+            within a short time interval.
+
+        </p>
+
+        <p>
+
+            AI Explanation:
+
+            The activity resembles an
+            impossible-travel attack pattern.
+            Zero Trust policy recommends
+            MFA verification before granting access.
+
+        </p>
+
+        <small>
+
+            Threat Level : HIGH
+
+        </small>
+
+    </div>
+
+</section>
+
+</main>
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+    <div class="footer-left">
+
+        © 2026 IBM Zero Trust Security Gateway
+
+        <br>
+
+        Frontend Cyber Security Dashboard
+
+    </div>
+
+    <div class="footer-right">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        Secured using Zero Trust Architecture
+
+    </div>
+
+</footer>
+
+</div>
+
+<!-- =====================================================
+     CHART.JS
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script src="script.js"></script>
+
+<script>
+
+/*window.watsonAssistantChatOptions = {
+integrationID: "YOUR_INTEGRATION_ID",
+region: "YOUR_REGION",
+serviceInstanceID: "YOUR_INSTANCE_ID",
+onLoad: async (instance) => {
+await instance.render();
+}
+}; */ 
+
+setTimeout(function(){
+
+const t=document.createElement("script");
+
+t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/latest/WatsonAssistantChatEntry.js";
+
+document.head.appendChild(t);
+
+});
+
+</script>
+
+<div id="mfaModal" class="mfa-modal">
+
+    <div class="mfa-content">
+
+        <h2>Multi-Factor Authentication</h2>
+
+        <p>High Risk Login Detected</p>
+
+        <input
+            type="text"
+            id="otpInput"
+            placeholder="Enter OTP"
+        >
+
+        <button id="verifyOtp">
+
+            Verify
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- Interactive AI Chat Assistant Modal -->
+<div id="aiChatModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; justify-content: center; align-items: center;">
+    <div class="modal-content" style="background: #fff; width: 450px; padding: 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+            <h3 style="margin: 0; color: #183B5A;">IBM AI Security Assistant</h3>
+            <button id="closeAiModal" style="background: none; border: none; font-size: 18px; cursor: pointer;">&times;</button>
+        </div>
+        <div id="aiChatLog" style="height: 250px; overflow-y: auto; background: #f8f9fa; padding: 10px; margin: 15px 0; border: 1px solid #ccc; border-radius: 4px; font-size: 14px;">
+            <p style="color: #666;"><b>Watson:</b> Hello! Ask me anything about your zero-trust network status or security logs.</p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+            <input type="text" id="aiUserInput" placeholder="Type your security question..." style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
+            <button id="sendAiQuery" style="background: #33659A; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer;">Send</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

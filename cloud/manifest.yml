@@ -1,0 +1,9 @@
+applications:
+  - name: zerotrust-gateway
+    memory: 256M
+    instances: 1
+    buildpack: python_buildpack
+    command: python app.py
+    path: .
+    env:
+      FLASK_ENV: production

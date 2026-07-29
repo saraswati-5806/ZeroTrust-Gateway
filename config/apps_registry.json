@@ -1,0 +1,23 @@
+{
+    "services": [
+
+        {
+            "id": "crm",
+            "url": "http://localhost:5001/api",
+            "owner": "Member 2"
+        },
+
+        {
+            "id": "hr",
+            "url": "http://localhost:5002/api",
+            "owner": "Member 2"
+        },
+
+        {
+            "id": "finance",
+            "url": "http://localhost:5003/api",
+            "owner": "Member 2"
+        }
+
+    ]
+}

@@ -1,0 +1,11 @@
+user_id,login_hour,geo_country,device_known,role_mismatch,failed_attempts,geo_distance_km,is_anomaly
+USR-001,10,India,1,0,0,12.5,0
+USR-002,14,India,1,0,0,45.0,0
+USR-003,3,Brazil,0,1,7,9241.3,1
+USR-004,22,Germany,0,0,4,6500.0,1
+USR-005,11,India,1,0,0,0.0,0
+USR-006,2,United States,0,1,6,13500.2,1
+USR-007,9,India,1,0,0,8.1,0
+USR-008,15,India,1,0,0,22.4,0
+USR-009,4,Russia,0,0,5,5400.1,1
+USR-010,12,India,1,0,0,15.2,0

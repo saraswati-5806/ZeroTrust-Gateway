@@ -1,0 +1,21 @@
+{
+    "crm": {
+        "name": "Customer Management",
+        "url": "http://localhost:5001/api"
+    },
+
+    "hr": {
+        "name": "Human Resource",
+        "url": "http://localhost:5002/api"
+    },
+
+    "finance": {
+        "name": "Finance",
+        "url": "http://localhost:5003/api"
+    },
+
+    "inventory": {
+        "name": "Inventory",
+        "url": "http://localhost:5004/api"
+    }
+}
